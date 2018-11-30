@@ -10,6 +10,8 @@ import java.net.URL;
 //TODO: restrict the cache to a specified size / # of images
 //TODO: make caching optional
 //TODO: Implement LRU algorithm
+//TODO: Add config file for fields
+
 class ImageCache {
 
     private static ImageCache instance;
