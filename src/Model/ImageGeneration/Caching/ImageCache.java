@@ -5,23 +5,22 @@ import Model.ImageGeneration.Generation.ImageHandler;
 
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.util.HashMap;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 //TODO: restrict the cache to a specified size / # of images
 //TODO: make caching optional
+//TODO: Implement LRU algorithm
 public class ImageCache {
-
-    //Stores pref, filename as cache
-    private HashMap<CubeImagePreferences, String> cache;
 
     private static ImageCache instance;
 
     //The directory to store the cached images
     private static String cacheDirectory = "image_cache/";
 
-    private ImageCache() {
-        this.reload();
-    }
+    private static final String url = "http://68.183.24.81/visualcube/visualcube.php?";
+
+    private ImageCache() {}
 
     public static ImageCache getInstance() {
         if(instance == null) {
@@ -30,50 +29,26 @@ public class ImageCache {
         return instance;
     }
 
-    public void put(CubeImagePreferences pref, BufferedImage image) {
-        String filename = cacheDirectory + pref.hashCode() + ".png";
-        ImageHandler.saveImageToFile(image, filename, new ImageSaveCompletionListener() {
-            @Override
-            public void onSuccess() {
-                cache.put(pref, filename);
-            }
+    public BufferedImage get(CubeImagePreferences pref) {
+        File cachedImage = new File(cacheDirectory + pref.hashCode() + ".png");
+        if(cachedImage.exists()) {
+            return ImageHandler.getImage(cachedImage);
+        }
 
-            @Override
-            public void onFailure() {}
-        });
-    }
-
-    public String get(CubeImagePreferences pref) {
-        return cache.get(pref);
-    }
-
-    private void reload() {
+        BufferedImage result = null;
         try {
-            FileInputStream fileIn = new FileInputStream(cacheDirectory + "cache_map");
-            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
-            cache = (HashMap<CubeImagePreferences, String>) objectIn.readObject();
-            objectIn.close();
-            System.out.println("Cache Loaded...");
-        } catch (FileNotFoundException e) {
-            //Create cache
-            cache = new HashMap<>();
-            System.out.println("Cache initialized...");
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+            result = ImageHandler.getImage(new URL(url + pref.toString()));
+            ImageHandler.saveImageToFile(result, cachedImage);
+        } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+
+        return result;
     }
 
-    public void save() {
-        try {
-            FileOutputStream fileOut = new FileOutputStream(cacheDirectory + "cache_map");
-            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-            objectOut.writeObject(cache);
-            objectOut.close();
-            System.out.println("Cache Saved...");
-        } catch (Exception ex) {
-            ex.printStackTrace();
+    public void clear() {
+        for(File file : new File(cacheDirectory).listFiles()) {
+            file.delete();
         }
     }
 }

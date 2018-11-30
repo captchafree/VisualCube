@@ -1,7 +1,5 @@
 package Model.ImageGeneration.Generation;
 
-import Model.ImageGeneration.Caching.ImageSaveCompletionListener;
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -31,13 +29,13 @@ public class ImageHandler {
 
     /**
      * Returns the image located at the URL
-     * @param filename The file to retrieve the image from
+     * @param file The file to retrieve the image from
      * @return The image at the URL
      * @throws IOException If the image cannot be read
      */
-    public static BufferedImage getImage(String filename) {
+    public static BufferedImage getImage(File file) {
         try {
-            return ImageIO.read(new File(filename));
+            return ImageIO.read(file);
         } catch(IOException e) {
             e.printStackTrace();
         }
@@ -69,22 +67,7 @@ public class ImageHandler {
         return false;
     }
 
-    public static void saveImageToFile(BufferedImage image, String filename, ImageSaveCompletionListener listener) {
-        if(image == null) {
-            listener.onFailure();
-            return;
-        }
-
-        String formatType = filename.substring(filename.indexOf(".") + 1);
-
-        try {
-            BufferedImage imageToSave = image;
-            File file = new File(filename);
-            ImageIO.write(imageToSave, formatType, file);
-            listener.onSuccess();
-        } catch (IOException e) {
-            e.printStackTrace();
-            listener.onFailure();
-        }
+    public static boolean saveImageToFile(BufferedImage image, File file) {
+        return saveImageToFile(image, file.toString());
     }
 }

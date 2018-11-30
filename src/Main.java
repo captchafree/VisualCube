@@ -1,10 +1,10 @@
+import Model.ImageGeneration.Caching.ImageCache;
 import Model.ImageGeneration.Generation.CubeImageGenerator;
 import Model.ImageGeneration.Generation.CubeImagePreferences;
 import Model.ImageGeneration.Preferences.BackgroundColor;
 import Model.ImageGeneration.Preferences.FileType;
 import Model.ImageGeneration.Preferences.StageMaskType;
 import SetupThreads.Initializer;
-
 
 import java.awt.image.BufferedImage;
 
@@ -39,7 +39,6 @@ public class Main {
         end = System.currentTimeMillis();
 
         System.out.println(end - start);
-
 
     }
 }
