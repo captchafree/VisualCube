@@ -1,17 +1,14 @@
-import Model.ImageGeneration.Caching.ImageCache;
 import Model.ImageGeneration.Generation.CubeImageGenerator;
-import Model.ImageGeneration.Generation.CubeImagePreferences;
+import Model.ImageGeneration.Preferences.CubeImagePreferences;
 import Model.ImageGeneration.Preferences.BackgroundColor;
 import Model.ImageGeneration.Preferences.FileType;
 import Model.ImageGeneration.Preferences.StageMaskType;
-import SetupThreads.Initializer;
 
 import java.awt.image.BufferedImage;
 
 public class Main {
 
     public static void main(String[] args) {
-        Initializer.init();
 
         CubeImagePreferences pref = new CubeImagePreferences.Builder()
                 .algorithmCase("RUR'U'")

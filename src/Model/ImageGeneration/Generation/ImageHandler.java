@@ -9,7 +9,7 @@ import java.net.URL;
 /**
  * Handles loading and saving images
  */
-public class ImageHandler {
+class ImageHandler {
 
     /**
      * Returns the image located at the URL
@@ -17,7 +17,7 @@ public class ImageHandler {
      * @return The image at the URL
      * @throws IOException If the image cannot be read
      */
-    public static BufferedImage getImage(URL url) {
+    static BufferedImage getImage(URL url) {
         try {
             return ImageIO.read(url);
         } catch(IOException e) {
@@ -33,7 +33,7 @@ public class ImageHandler {
      * @return The image at the URL
      * @throws IOException If the image cannot be read
      */
-    public static BufferedImage getImage(File file) {
+    static BufferedImage getImage(File file) {
         try {
             return ImageIO.read(file);
         } catch(IOException e) {
@@ -49,7 +49,7 @@ public class ImageHandler {
      * @param filename The name of the file to save the image to
      * @return True if the image was saved successfully, false otherwise.
      */
-    public static boolean saveImageToFile(BufferedImage image, String filename) {
+    static boolean saveImageToFile(BufferedImage image, String filename) {
         if(image == null) {
             return true;
         }
@@ -67,7 +67,13 @@ public class ImageHandler {
         return false;
     }
 
-    public static boolean saveImageToFile(BufferedImage image, File file) {
+    /**
+     * Saves an image to a specified file
+     * @param image The image to save
+     * @param file The file to save the image to
+     * @return True if the image was saved successfully, false otherwise.
+     */
+    static boolean saveImageToFile(BufferedImage image, File file) {
         return saveImageToFile(image, file.toString());
     }
 }

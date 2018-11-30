@@ -1,20 +1,16 @@
 package Model.ImageGeneration.Preferences;
 
-import java.io.Serializable;
-
-public abstract class Preference implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+abstract class Preference {
 
     private String value;
 
-    public Preference(String value) {
+    Preference(String value) {
         this.value = value;
     }
 
-    public abstract String getIdentifier();
+    abstract String getIdentifier();
 
-    public String getValue() {
+    String getValue() {
         return this.value;
     }
 }

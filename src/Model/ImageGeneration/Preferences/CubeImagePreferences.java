@@ -1,16 +1,10 @@
-package Model.ImageGeneration.Generation;
+package Model.ImageGeneration.Preferences;
 
-import Model.ImageGeneration.Preferences.*;
-
-import java.io.Serializable;
 import java.util.HashMap;
-import java.util.Objects;
 
-public class CubeImagePreferences implements Serializable {
+public class CubeImagePreferences {
 
-    public static class Builder implements Serializable {
-
-        private static final long serialVersionUID = 1L;
+    public static class Builder {
 
         private HashMap<Class, Preference> preferences;
 
@@ -71,9 +65,7 @@ public class CubeImagePreferences implements Serializable {
         }
     }
 
-    private static final long serialVersionUID = 1L;
-
-    public HashMap<Class, Preference> preferences;
+    HashMap<Class, Preference> preferences;
 
     public CubeImagePreferences() {}
 

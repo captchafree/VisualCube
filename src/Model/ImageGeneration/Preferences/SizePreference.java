@@ -2,16 +2,16 @@ package Model.ImageGeneration.Preferences;
 
 public class SizePreference extends Preference {
 
-    public SizePreference(Integer size) {
+    SizePreference(Integer size) {
         super(size.toString());
     }
 
-    public SizePreference() {
+    SizePreference() {
         this(250);
     }
 
     @Override
-    public String getIdentifier() {
+    String getIdentifier() {
         return "size";
     }
 }

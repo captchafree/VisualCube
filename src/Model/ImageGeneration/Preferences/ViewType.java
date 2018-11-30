@@ -1,19 +1,18 @@
 package Model.ImageGeneration.Preferences;
 
-import java.io.Serializable;
-
-public enum ViewType implements Serializable {
+public enum ViewType {
 
     TRANSPARENT("trans"),
     PLANAR("plan");
 
-    private final String name;
+    private final String view;
 
     ViewType(String s) {
-        name = s;
+        view = s;
     }
 
+    @Override
     public String toString() {
-        return this.name;
+        return this.view;
     }
 }

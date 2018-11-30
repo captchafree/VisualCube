@@ -1,13 +1,13 @@
 package Model.ImageGeneration.Preferences;
 
-public class PuzzleTypePreference extends Preference {
+class PuzzleTypePreference extends Preference {
 
-    public PuzzleTypePreference(Integer size) {
+    PuzzleTypePreference(Integer size) {
         super(size.toString());
     }
 
     @Override
-    public String getIdentifier() {
+    String getIdentifier() {
         return "pzl";
     }
 }
