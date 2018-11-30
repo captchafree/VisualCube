@@ -1,17 +1,17 @@
 package Model.ImageGeneration.Preferences;
 
-public class FileTypePreference extends Preference {
+class FileTypePreference extends Preference {
 
-    public FileTypePreference(FileType fileType) {
+    FileTypePreference(FileType fileType) {
         super(fileType.toString());
     }
 
-    public FileTypePreference() {
+    FileTypePreference() {
         this(FileType.PNG);
     }
 
     @Override
-    public String getIdentifier() {
+    String getIdentifier() {
         return "fmt";
     }
 }

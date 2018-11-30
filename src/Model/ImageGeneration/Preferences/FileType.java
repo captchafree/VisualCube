@@ -1,8 +1,6 @@
 package Model.ImageGeneration.Preferences;
 
-import java.io.Serializable;
-
-public enum FileType implements Serializable {
+public enum FileType {
 
     GIF("gif"),
     JPEG("jpg"),
@@ -14,6 +12,7 @@ public enum FileType implements Serializable {
         extension = ext;
     }
 
+    @Override
     public String toString() {
         return this.extension;
     }

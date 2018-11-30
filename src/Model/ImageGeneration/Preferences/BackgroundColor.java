@@ -1,8 +1,6 @@
 package Model.ImageGeneration.Preferences;
 
-import java.io.Serializable;
-
-public enum BackgroundColor implements Serializable {
+public enum BackgroundColor {
 
     DARK_GRAY("dgrey"),
     GRAY("grey"),
@@ -18,13 +16,14 @@ public enum BackgroundColor implements Serializable {
     BLACK("black"),
     TRANSPARENT("t");
 
-    private final String name;
+    private final String color;
 
     BackgroundColor(String s) {
-        name = s;
+        color = s;
     }
 
+    @Override
     public String toString() {
-        return this.name;
+        return this.color;
     }
 }

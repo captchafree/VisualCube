@@ -1,7 +1,5 @@
 package Model.ImageGeneration.Generation;
 
-import Model.ImageGeneration.Caching.ImageSaveCompletionListener;
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -11,7 +9,7 @@ import java.net.URL;
 /**
  * Handles loading and saving images
  */
-public class ImageHandler {
+class ImageHandler {
 
     /**
      * Returns the image located at the URL
@@ -19,7 +17,7 @@ public class ImageHandler {
      * @return The image at the URL
      * @throws IOException If the image cannot be read
      */
-    public static BufferedImage getImage(URL url) {
+    static BufferedImage getImage(URL url) {
         try {
             return ImageIO.read(url);
         } catch(IOException e) {
@@ -31,13 +29,13 @@ public class ImageHandler {
 
     /**
      * Returns the image located at the URL
-     * @param filename The file to retrieve the image from
+     * @param file The file to retrieve the image from
      * @return The image at the URL
      * @throws IOException If the image cannot be read
      */
-    public static BufferedImage getImage(String filename) {
+    static BufferedImage getImage(File file) {
         try {
-            return ImageIO.read(new File(filename));
+            return ImageIO.read(file);
         } catch(IOException e) {
             e.printStackTrace();
         }
@@ -51,7 +49,7 @@ public class ImageHandler {
      * @param filename The name of the file to save the image to
      * @return True if the image was saved successfully, false otherwise.
      */
-    public static boolean saveImageToFile(BufferedImage image, String filename) {
+    static boolean saveImageToFile(BufferedImage image, String filename) {
         if(image == null) {
             return true;
         }
@@ -69,22 +67,13 @@ public class ImageHandler {
         return false;
     }
 
-    public static void saveImageToFile(BufferedImage image, String filename, ImageSaveCompletionListener listener) {
-        if(image == null) {
-            listener.onFailure();
-            return;
-        }
-
-        String formatType = filename.substring(filename.indexOf(".") + 1);
-
-        try {
-            BufferedImage imageToSave = image;
-            File file = new File(filename);
-            ImageIO.write(imageToSave, formatType, file);
-            listener.onSuccess();
-        } catch (IOException e) {
-            e.printStackTrace();
-            listener.onFailure();
-        }
+    /**
+     * Saves an image to a specified file
+     * @param image The image to save
+     * @param file The file to save the image to
+     * @return True if the image was saved successfully, false otherwise.
+     */
+    static boolean saveImageToFile(BufferedImage image, File file) {
+        return saveImageToFile(image, file.toString());
     }
 }

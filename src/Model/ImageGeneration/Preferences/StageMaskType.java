@@ -1,8 +1,6 @@
 package Model.ImageGeneration.Preferences;
 
-import java.io.Serializable;
-
-public enum StageMaskType implements Serializable {
+public enum StageMaskType {
 
     FL,
     F2L,

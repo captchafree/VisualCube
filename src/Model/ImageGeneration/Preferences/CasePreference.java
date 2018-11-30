@@ -1,13 +1,13 @@
 package Model.ImageGeneration.Preferences;
 
-public class CasePreference extends Preference {
+class CasePreference extends Preference {
 
-    public CasePreference(String algorithm) {
+    CasePreference(String algorithm) {
         super(algorithm);
     }
 
     @Override
-    public String getIdentifier() {
+    String getIdentifier() {
         return "case";
     }
 }
