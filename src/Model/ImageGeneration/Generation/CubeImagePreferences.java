@@ -4,8 +4,72 @@ import Model.ImageGeneration.Preferences.*;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class CubeImagePreferences implements Serializable {
+
+    public static class Builder implements Serializable {
+
+        private static final long serialVersionUID = 1L;
+
+        private HashMap<Class, Preference> preferences;
+
+        public Builder() {
+            preferences = new HashMap<>();
+        }
+
+        public Builder algorithm(String algorithm) {
+            preferences.put(AlgorithmPreference.class, new AlgorithmPreference(algorithm));
+            return this;
+        }
+
+        public Builder fileType(FileType fileType) {
+            preferences.put(FileTypePreference.class, new FileTypePreference(fileType));
+            return this;
+        }
+
+        public Builder imageSize(Integer size) {
+            preferences.put(SizePreference.class, new SizePreference(size));
+            return this;
+        }
+
+        public Builder backgroundColor(BackgroundColor color) {
+            preferences.put(BackgroundColorPreference.class, new BackgroundColorPreference(color));
+            return this;
+        }
+
+        public Builder puzzleType(Integer size) {
+            preferences.put(PuzzleTypePreference.class, new PuzzleTypePreference(size));
+            return this;
+        }
+
+        public Builder algorithmCase(String algorithm) {
+            preferences.put(CasePreference.class, new CasePreference(algorithm));
+            return this;
+        }
+
+        public Builder stageMask(StageMaskType mask) {
+            preferences.put(StageMaskType.class, new StageMaskPreference(mask));
+            return this;
+        }
+
+        public Builder view(ViewType view) {
+            preferences.put(ViewPreference.class, new ViewPreference(view));
+            return this;
+        }
+
+        public CubeImagePreferences build() {
+            CubeImagePreferences pref = new CubeImagePreferences();
+
+            //There must be at least one preference to generate an image
+            if(preferences.size() == 0) {
+                preferences.put(FileTypePreference.class, new FileTypePreference(FileType.PNG));
+            }
+
+            pref.preferences = this.preferences;
+            return pref;
+        }
+    }
 
     private static final long serialVersionUID = 1L;
 
@@ -39,5 +103,18 @@ public class CubeImagePreferences implements Serializable {
         result += "." + preferences.get(FileTypePreference.class).getValue();
 
         return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CubeImagePreferences that = (CubeImagePreferences) o;
+        return that.hashCode() == this.hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+        return this.toString().hashCode();
     }
 }
