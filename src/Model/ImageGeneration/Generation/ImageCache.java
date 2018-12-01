@@ -8,7 +8,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 //TODO: restrict the cache to a specified size / # of images
-//TODO: make caching optional
 //TODO: Implement LRU algorithm
 //TODO: Add config file for fields
 
@@ -17,7 +16,7 @@ class ImageCache {
     private static ImageCache instance;
 
     //The directory to store the cached images
-    private static String cacheDirectory = "image_cache/";
+    private static final String cacheDirectory = "image_cache/";
 
     //The url of visual cube
     private static final String url = "http://68.183.24.81/visualcube/visualcube.php?";
@@ -32,7 +31,7 @@ class ImageCache {
     }
 
     BufferedImage get(CubeImagePreferences pref) {
-        File cachedImage = new File(cacheDirectory + pref.hashCode() + ".png");
+        File cachedImage = new File(cacheDirectory + pref.hashCode() + "." + pref.getFileExtension());
         if(cachedImage.exists()) {
             return ImageHandler.getImage(cachedImage);
         }
@@ -40,7 +39,6 @@ class ImageCache {
         try {
             final BufferedImage result = ImageHandler.getImage(new URL(url + pref.toString()));
 
-            //TODO: Check if this is thread safe (probably isnt)
             new Thread(new Runnable() {
                 @Override
                 public void run() {

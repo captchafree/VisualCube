@@ -7,6 +7,7 @@ import Model.ImageGeneration.Exceptions.SizeOutOfBoundsException;
 
 import java.util.HashMap;
 
+//TODO: Add more preferences
 public class CubeImagePreferences {
 
     public static class Builder {
@@ -18,7 +19,7 @@ public class CubeImagePreferences {
         }
 
         //TODO: Replace numbers >4 with that number % 4
-        public boolean verifyAlgorithmm(String algorithm) {
+        private boolean verifyAlgorithmm(String algorithm) {
             String validCharacters = "UDFBLRSEM";
             validCharacters += validCharacters.toLowerCase() + "'23";
 
@@ -100,8 +101,7 @@ public class CubeImagePreferences {
 
     private HashMap<Class, Preference> preferences;
 
-    public CubeImagePreferences() {
-    }
+    private CubeImagePreferences() {}
 
     @Override
     public String toString() {
@@ -129,6 +129,10 @@ public class CubeImagePreferences {
         result += "." + preferences.get(FileTypePreference.class).getValue();
 
         return result;
+    }
+
+    public String getFileExtension() {
+        return preferences.get(FileTypePreference.class).getValue();
     }
 
     @Override

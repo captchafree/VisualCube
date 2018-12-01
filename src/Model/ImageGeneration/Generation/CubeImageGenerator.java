@@ -12,7 +12,7 @@ public class CubeImageGenerator {
         return cache.get(preferences);
     }
 
-    public static void clearCache() {
+    static void clearCache() {
         cache.clear();
     }
 }
