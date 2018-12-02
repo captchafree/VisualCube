@@ -49,7 +49,7 @@ VCAttributes attributes = new VCAttributes();
 BufferedImage img = VisualCube.getImageWithPreferences(preferences);
 ```
 
-Result
+![alt text](https://github.com/jbeck18/VisualCube/blob/master/examples/example_1.png "Example 1")
 
 #### Example 2
 
@@ -63,7 +63,7 @@ VCAttributes attributes = new VCAttributes.Builder()
 VisualCube.saveImageWithPreferencesToFile(preferences, "examples/example_2");
 ```
 
-Result
+![alt text](https://github.com/jbeck18/VisualCube/blob/master/examples/example_2.png "Example 2")
 
 #### Example 3
 
@@ -78,4 +78,4 @@ VCAttributes attributes = new VCAttributes.Builder()
 VisualCube.saveImageWithPreferencesToFile(attributes, "examples/example_3");
 ```
 
-Result
+![alt text](https://github.com/jbeck18/VisualCube/blob/master/examples/example_3.png "Example 3")
