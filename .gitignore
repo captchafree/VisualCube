@@ -22,9 +22,12 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-#Intellij Files
+# Intellij Files
 .idea/
 *.iml
 
 # cache for generated images
 *.image_cache/
+
+# Jar file
+!VisualCube.jar
