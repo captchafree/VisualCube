@@ -12,12 +12,12 @@ The `VCAttributes` class stores the attributes that you want the generated image
 
 | Function | Description | Value Range | Default |
 |----------|:-------------:|:-------------:|:---------:|
-| .fileType() | Image format | png \| gif \| jpg | png |
-| .backgroundColor() | Background Color | transparent \| black \| dark_gray \| gray \| silver \| white \| yellow \| red \| orange \| blue \| green \| purple \| pink | white |
-| .puzzleType() | PuzzleType | 1 - 10 | 3 |
+| .fileType() | Image format | png \| gif \| jpeg | png |
+| .backgroundColor() | Background color | transparent \| black \| dark_gray \| gray \| silver \| white \| yellow \| red \| orange \| blue \| green \| purple \| pink | white |
+| .puzzleType() | Puzzle type | 1 - 10 | 3 |
 | .imageSize() | Size of the generated image | 0 - 1024 | 128 |
 | .view() | Special view | plan \| trans | None |
-| .stageMask() | Stage Mask | fl \| f2l \| ll \| cll \| ell \| oll \| ocll \| oell \| coll \| ocell \| wv \| vh \| els \| cls \| cmll \| cross \| f2l_3 \| f2l_2 \| f2l_sm \| f2l_1 \| f2b \| line | None |
+| .stageMask() | Stage mask | fl \| f2l \| ll \| cll \| ell \| oll \| ocll \| oell \| coll \| ocell \| wv \| vh \| els \| cls \| cmll \| cross \| f2l_3 \| f2l_2 \| f2l_sm \| f2l_1 \| f2b \| line | None |
 | .algorithm() | Algorithm to apply | [UDLRFBudlrfbMESxyz'23]* | None |
 | .algorithmCase() | Algorithm to solve case | [UDLRFBudlrfbMESxyz'23]* | None |
 

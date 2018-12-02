@@ -7,43 +7,28 @@ import ImageGeneration.Exceptions.SizeOutOfBoundsException;
 
 import java.util.HashMap;
 
-//TODO: Add more preferences
-//TODO: Refactor to remove duplilcate code
+//TODO: Add more attributes
+//TODO: Refactor to remove duplicate code
 public class VCAttributes {
 
     public static class Builder {
 
-        private HashMap<Class, Attribute> preferences;
+        private HashMap<Class, Attribute> attributes;
         private FileTypeAttribute fileTypePreferred;
 
         public Builder() {
-            preferences = new HashMap<>();
+            attributes = new HashMap<>();
 
             //Default file type is PNG
             fileTypePreferred = new FileTypeAttribute(FileType.PNG);
-        }
-
-        //TODO: Replace numbers >4 with that number % 4
-        private boolean verifyAlgorithmm(String algorithm) {
-            String validCharacters = "UDFBLRSEM";
-            validCharacters += validCharacters.toLowerCase() + "'23xyz";
-
-            return algorithm.matches("[" + validCharacters + "]*");
         }
 
         public Builder algorithm(String algorithm) {
             if(algorithm == null) {
                 return this;
             }
-            algorithm = algorithm.replace(" ", "");
-            if (!verifyAlgorithmm(algorithm)) {
-                String validCharacters = "UDFBLRSEM";
-                validCharacters += validCharacters.toLowerCase() + "'23xyz";
 
-                throw new InvalidAlgorithmException("An algorithm case can consist of only the characters in the set {" +
-                        validCharacters.join(", ", validCharacters.split("")) + "}");
-            }
-            preferences.put(AlgorithmAttribute.class, new AlgorithmAttribute(algorithm));
+            attributes.put(AlgorithmAttribute.class, new AlgorithmAttribute(algorithm));
             return this;
         }
 
@@ -61,10 +46,7 @@ public class VCAttributes {
                 return this;
             }
 
-            if (size < 0 || size > 1024) {
-                throw new SizeOutOfBoundsException("An image's size must be a value between 1 and 1024");
-            }
-            preferences.put(SizeAttribute.class, new SizeAttribute(size));
+            attributes.put(SizeAttribute.class, new SizeAttribute(size));
             return this;
         }
 
@@ -73,7 +55,7 @@ public class VCAttributes {
                 return this;
             }
 
-            preferences.put(BackgroundColorAttribute.class, new BackgroundColorAttribute(color));
+            attributes.put(BackgroundColorAttribute.class, new BackgroundColorAttribute(color));
             return this;
         }
 
@@ -82,10 +64,7 @@ public class VCAttributes {
                 return this;
             }
 
-            if (size < 1 || size > 10) {
-                throw new PuzzleTypeOutOfBoundsException("A puzzle type must be an integer between 1 and 10");
-            }
-            preferences.put(PuzzleTypeAttribute.class, new PuzzleTypeAttribute(size));
+            attributes.put(PuzzleTypeAttribute.class, new PuzzleTypeAttribute(size));
             return this;
         }
 
@@ -93,15 +72,8 @@ public class VCAttributes {
             if(algorithm == null) {
                 return this;
             }
-            algorithm = algorithm.replace(" ", "");
-            if (!verifyAlgorithmm(algorithm)) {
-                String validCharacters = "UDFBLRSEM";
-                validCharacters += validCharacters.toLowerCase() + "'23xyz";
 
-                throw new InvalidCaseException("An algorithm case can consist of only the characters in the set {" +
-                        validCharacters.join(", ", validCharacters.split("")) + "}");
-            }
-            preferences.put(CaseAttribute.class, new CaseAttribute(algorithm));
+            attributes.put(CaseAttribute.class, new CaseAttribute(algorithm));
             return this;
         }
 
@@ -110,7 +82,7 @@ public class VCAttributes {
                 return this;
             }
 
-            preferences.put(StageMaskType.class, new StageMaskAttribute(mask));
+            attributes.put(StageMaskType.class, new StageMaskAttribute(mask));
             return this;
         }
 
@@ -119,23 +91,23 @@ public class VCAttributes {
                 return this;
             }
 
-            preferences.put(ViewAttribute.class, new ViewAttribute(view));
+            attributes.put(ViewAttribute.class, new ViewAttribute(view));
             return this;
         }
 
         public VCAttributes build() {
             VCAttributes pref = new VCAttributes();
-            pref.preferences = this.preferences;
+            pref.attributes = this.attributes;
             pref.fileTypePreferred = this.fileTypePreferred;
             return pref;
         }
     }
 
-    private HashMap<Class, Attribute> preferences;
+    private HashMap<Class, Attribute> attributes;
     private FileTypeAttribute fileTypePreferred;
 
     public VCAttributes() {
-        preferences = new HashMap<>();
+        attributes = new HashMap<>();
 
         //Default file type is PNG
         fileTypePreferred = new FileTypeAttribute(FileType.PNG);
@@ -143,7 +115,7 @@ public class VCAttributes {
 
     @Override
     public String toString() {
-        Attribute[] prefs = preferences.values().toArray(new Attribute[0]);
+        Attribute[] prefs = attributes.values().toArray(new Attribute[0]);
         String[] terms = new String[prefs.length + 1];
 
         for(int i = 0; i < prefs.length; i++) {
@@ -157,7 +129,7 @@ public class VCAttributes {
     }
 
     /**
-     * Gets the file extension associated with the preferences.
+     * Gets the file extension associated with the attributes.
      * @return
      */
     public String getFileExtension() {
@@ -179,27 +151,12 @@ public class VCAttributes {
 
     //====================================Setters====================================
 
-    //TODO: Replace numbers >4 with that number % 4
-    private boolean verifyAlgorithmm(String algorithm) {
-        String validCharacters = "UDFBLRSEM";
-        validCharacters += validCharacters.toLowerCase() + "'23xyz";
-
-        return algorithm.matches("[" + validCharacters + "]*");
-    }
-
     public void algorithm(String algorithm) {
         if(algorithm == null) {
             return;
         }
-        algorithm = algorithm.replace(" ", "");
-        if (!verifyAlgorithmm(algorithm)) {
-            String validCharacters = "UDFBLRSEM";
-            validCharacters += validCharacters.toLowerCase() + "'23xyz";
 
-            throw new InvalidAlgorithmException("An algorithm case can consist of only the characters in the set {" +
-                    validCharacters.join(", ", validCharacters.split("")) + "}");
-        }
-        preferences.put(AlgorithmAttribute.class, new AlgorithmAttribute(algorithm));
+        attributes.put(AlgorithmAttribute.class, new AlgorithmAttribute(algorithm));
         return;
     }
 
@@ -217,10 +174,8 @@ public class VCAttributes {
             return;
         }
 
-        if (size < 0 || size > 1024) {
-            throw new SizeOutOfBoundsException("An image's size must be a value between 1 and 1024");
-        }
-        preferences.put(SizeAttribute.class, new SizeAttribute(size));
+
+        attributes.put(SizeAttribute.class, new SizeAttribute(size));
         return;
     }
 
@@ -229,7 +184,7 @@ public class VCAttributes {
             return;
         }
 
-        preferences.put(BackgroundColorAttribute.class, new BackgroundColorAttribute(color));
+        attributes.put(BackgroundColorAttribute.class, new BackgroundColorAttribute(color));
         return;
     }
 
@@ -238,10 +193,7 @@ public class VCAttributes {
             return;
         }
 
-        if (size < 1 || size > 10) {
-            throw new PuzzleTypeOutOfBoundsException("A puzzle type must be an integer between 1 and 10");
-        }
-        preferences.put(PuzzleTypeAttribute.class, new PuzzleTypeAttribute(size));
+        attributes.put(PuzzleTypeAttribute.class, new PuzzleTypeAttribute(size));
         return;
     }
 
@@ -249,16 +201,8 @@ public class VCAttributes {
         if(algorithm == null) {
             return;
         }
-        algorithm = algorithm.replace(" ", "");
-        System.out.println(algorithm);
-        if (!verifyAlgorithmm(algorithm)) {
-            String validCharacters = "UDFBLRSEM";
-            validCharacters += validCharacters.toLowerCase() + "'23xyz";
 
-            throw new InvalidCaseException("An algorithm case can consist of only the characters in the set {" +
-                    validCharacters.join(", ", validCharacters.split("")) + "}");
-        }
-        preferences.put(CaseAttribute.class, new CaseAttribute(algorithm));
+        attributes.put(CaseAttribute.class, new CaseAttribute(algorithm));
         return;
     }
 
@@ -267,7 +211,7 @@ public class VCAttributes {
             return;
         }
 
-        preferences.put(StageMaskType.class, new StageMaskAttribute(mask));
+        attributes.put(StageMaskType.class, new StageMaskAttribute(mask));
         return;
     }
 
@@ -276,7 +220,7 @@ public class VCAttributes {
             return;
         }
 
-        preferences.put(ViewAttribute.class, new ViewAttribute(view));
+        attributes.put(ViewAttribute.class, new ViewAttribute(view));
         return;
     }
 }
