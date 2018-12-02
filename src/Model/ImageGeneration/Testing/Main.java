@@ -1,3 +1,5 @@
+package Model.ImageGeneration.Testing;
+
 import Model.ImageGeneration.Generation.CubeImageGenerator;
 import Model.ImageGeneration.Preferences.CubeImagePreferences;
 import Model.ImageGeneration.Preferences.BackgroundColor;
@@ -19,8 +21,12 @@ public class Main {
                 .imageSize(250)
                 .puzzleType(3)
                 .backgroundColor(BackgroundColor.TRANSPARENT)
-                .stageMask(StageMaskType.F2L_2)
+                .stageMask(null)
                 .build();
+
+        pref.algorithmCase("S2M2E2");
+
+        System.out.println(pref.toString());
 
         CubeImageGenerator.getImageWithPreferences(pref);
     }
