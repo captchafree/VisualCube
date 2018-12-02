@@ -34,7 +34,7 @@ public class CubeImagePreferences {
             if(algorithm == null) {
                 return this;
             }
-
+            algorithm = algorithm.replace(" ", "");
             if (!verifyAlgorithmm(algorithm)) {
                 String validCharacters = "UDFBLRSEM";
                 validCharacters += validCharacters.toLowerCase() + "'23";
@@ -92,7 +92,7 @@ public class CubeImagePreferences {
             if(algorithm == null) {
                 return this;
             }
-
+            algorithm = algorithm.replace(" ", "");
             if (!verifyAlgorithmm(algorithm)) {
                 String validCharacters = "UDFBLRSEM";
                 validCharacters += validCharacters.toLowerCase() + "'23";
@@ -181,7 +181,7 @@ public class CubeImagePreferences {
         if(algorithm == null) {
             return;
         }
-
+        algorithm = algorithm.replace(" ", "");
         if (!verifyAlgorithmm(algorithm)) {
             String validCharacters = "UDFBLRSEM";
             validCharacters += validCharacters.toLowerCase() + "'23";
@@ -239,7 +239,8 @@ public class CubeImagePreferences {
         if(algorithm == null) {
             return;
         }
-
+        algorithm = algorithm.replace(" ", "");
+        System.out.println(algorithm);
         if (!verifyAlgorithmm(algorithm)) {
             String validCharacters = "UDFBLRSEM";
             validCharacters += validCharacters.toLowerCase() + "'23";
