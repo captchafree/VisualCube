@@ -1,4 +1,4 @@
-package Model.ImageGeneration.Preferences;
+package ImageGeneration.Preferences;
 
 abstract class Attribute {
 

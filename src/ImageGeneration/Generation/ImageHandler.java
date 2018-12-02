@@ -1,4 +1,4 @@
-package Model.ImageGeneration.Generation;
+package ImageGeneration.Generation;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
