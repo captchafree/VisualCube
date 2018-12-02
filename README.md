@@ -13,7 +13,7 @@ The `VCAttributes` class stores the attributes that you want the generated image
 | Function | Description | Value Range | Default |
 |----------|:-------------:|:-------------:|:---------:|
 | .fileType() | Image format | png \| gif \| jpg | png |
-| .backgroundColor() | Background Color | black \| dark_gray \| gray \| silver \| white \| yellow \| red \| orange \| blue \| green \| purple \| pink | white |
+| .backgroundColor() | Background Color | transparent \| black \| dark_gray \| gray \| silver \| white \| yellow \| red \| orange \| blue \| green \| purple \| pink | white |
 | .puzzleType() | PuzzleType | 1 - 10 | 3 |
 | .imageSize() | Size of the generated image | 0 - 1024 | 128 |
 | .view() | Special view | plan \| trans | None |
