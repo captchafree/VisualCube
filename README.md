@@ -31,7 +31,7 @@ attributes.backgroundColor(BackgroundColor.TRANSPARENT);
 attributes.algorithm("S2 E2 M2");
 ```
 
-or chain them together
+or chain them together.
 
 ```java
 VCAttributes attributes = new VCAttributes()
@@ -46,7 +46,7 @@ Then, either generate a `BufferedImage` object
 BufferedImage result = VisualCube.getImageWithAttributes(attributes);
 ```
 
-or directly save the generated image to a file
+or directly save the generated image to a file.
 
 ```java
 VisualCube.saveImageWithAttributesToFile(attributes, "CubeImage");

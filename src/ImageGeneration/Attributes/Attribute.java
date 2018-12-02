@@ -2,7 +2,7 @@ package ImageGeneration.Attributes;
 
 import ImageGeneration.Exceptions.InvalidAttributeException;
 
-abstract class Attribute {
+abstract class Attribute implements Comparable<Attribute> {
 
     private String value;
 
@@ -31,5 +31,10 @@ abstract class Attribute {
     @Override
     public String toString() {
         return this.getIdentifier() + "=" + this.value;
+    }
+
+    @Override
+    public int compareTo(Attribute other) {
+        return this.getIdentifier().compareTo(other.getIdentifier());
     }
 }
