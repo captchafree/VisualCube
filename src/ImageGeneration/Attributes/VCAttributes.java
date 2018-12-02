@@ -1,4 +1,4 @@
-package ImageGeneration.Preferences;
+package ImageGeneration.Attributes;
 
 import ImageGeneration.Exceptions.InvalidAlgorithmException;
 import ImageGeneration.Exceptions.InvalidCaseException;

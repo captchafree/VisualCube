@@ -1,4 +1,4 @@
-package ImageGeneration.Preferences;
+package ImageGeneration.Attributes;
 
 class PuzzleTypeAttribute extends Attribute {
 

@@ -1,9 +1,9 @@
 package Testing;
 
 import ImageGeneration.Generation.VisualCube;
-import ImageGeneration.Preferences.BackgroundColor;
-import ImageGeneration.Preferences.StageMaskType;
-import ImageGeneration.Preferences.VCAttributes;
+import ImageGeneration.Attributes.BackgroundColor;
+import ImageGeneration.Attributes.StageMaskType;
+import ImageGeneration.Attributes.VCAttributes;
 
 public class Examples {
 
