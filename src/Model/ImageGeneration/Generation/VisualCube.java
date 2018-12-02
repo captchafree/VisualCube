@@ -14,7 +14,7 @@ public class VisualCube {
      * @param preferences The preferences to be used to generate the image.
      * @return An image matching the specified preferences.
      */
-    public static BufferedImage getImageWithPreferences(VCAttributes preferences) {
+    public static BufferedImage getImageWithAttributes(VCAttributes preferences) {
         return cache.get(preferences);
     }
 
@@ -24,8 +24,8 @@ public class VisualCube {
      * @param filename The name of the file to save the image to. Note that the file extension should be omitted
      *                 since it is contained in the preferences.
      */
-    public static void saveImageWithPreferencesToFile(VCAttributes preferences, String filename) {
-        BufferedImage img = getImageWithPreferences(preferences);
+    public static void saveImageWithAttributesToFile(VCAttributes preferences, String filename) {
+        BufferedImage img = getImageWithAttributes(preferences);
         File file = new File(filename.substring(0, filename.lastIndexOf("/")));
         file.mkdirs();
         ImageHandler.saveImageToFile(img, filename + "." + preferences.getFileExtension());

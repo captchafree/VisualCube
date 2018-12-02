@@ -23,10 +23,9 @@ public class Main {
                 .stageMask(null)
                 .build();
 
-        //pref.algorithmCase("S2M2E2");
 
         System.out.println(pref.toString());
 
-        VisualCube.getImageWithPreferences(pref);
+        VisualCube.getImageWithAttributes(pref);
     }
 }

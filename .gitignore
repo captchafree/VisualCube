@@ -27,10 +27,13 @@ hs_err_pid*
 *.iml
 
 # cache for generated images
-*.image_cache/
+VisualCube/
 
 # Jar file
 !VisualCube.jar
 
 # Example images
 !examples/
+
+#Testing Files
+Main.java
