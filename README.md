@@ -40,6 +40,7 @@ VCAttributes attributes = new VCAttributes.Builder()
                 .build();
 ```
 
+
 Then, either generate a `BufferedImage` object
 
 ```java
@@ -51,6 +52,7 @@ or directly save the generated image to a file
 ```java
 VisualCube.saveImageWithAttributesToFile(attributes, "CubeImage");
 ```
+
 
 ### Examples
 
