@@ -1,8 +1,8 @@
 package Model.ImageGeneration.Preferences;
 
-class StageMaskPreference extends Preference {
+class StageMaskAttribute extends Attribute {
 
-    StageMaskPreference(StageMaskType mask) {
+    StageMaskAttribute(StageMaskType mask) {
         super(mask.name().toLowerCase());
     }
 

@@ -1,8 +1,8 @@
 package Model.ImageGeneration.Preferences;
 
-class PuzzleTypePreference extends Preference {
+class PuzzleTypeAttribute extends Attribute {
 
-    PuzzleTypePreference(Integer size) {
+    PuzzleTypeAttribute(Integer size) {
         super(size.toString());
     }
 

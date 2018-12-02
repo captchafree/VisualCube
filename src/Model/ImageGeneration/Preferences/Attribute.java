@@ -1,10 +1,10 @@
 package Model.ImageGeneration.Preferences;
 
-abstract class Preference {
+abstract class Attribute {
 
     private String value;
 
-    Preference(String value) {
+    Attribute(String value) {
         this.value = value;
     }
 

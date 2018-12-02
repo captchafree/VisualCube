@@ -1,13 +1,13 @@
 package Model.ImageGeneration.Preferences;
 
-class AlgorithmPreference extends Preference {
+class CaseAttribute extends Attribute {
 
-    AlgorithmPreference(String algorithm) {
+    CaseAttribute(String algorithm) {
         super(algorithm);
     }
 
     @Override
     String getIdentifier() {
-        return "alg";
+        return "case";
     }
 }
