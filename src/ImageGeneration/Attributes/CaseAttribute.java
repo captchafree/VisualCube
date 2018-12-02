@@ -1,6 +1,6 @@
 package ImageGeneration.Attributes;
 
-import ImageGeneration.Exceptions.InvalidAlgorithmException;
+import ImageGeneration.Exceptions.InvalidCaseException;
 
 class CaseAttribute extends Attribute {
 
@@ -22,7 +22,7 @@ class CaseAttribute extends Attribute {
         algorithm = algorithm.replace(" ", "");
         boolean isValid =  algorithm.matches("[" + validCharacters + "]*");
         if(!isValid) {
-            throw new InvalidAlgorithmException("An algorithm can consist of only the characters in the set {" +
+            throw new InvalidCaseException("An algorithm case can consist of only the characters in the set {" +
                     validCharacters.join(", ", validCharacters.split("")) + "}");
         }
         return algorithm;

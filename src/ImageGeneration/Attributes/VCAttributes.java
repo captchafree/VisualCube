@@ -1,111 +1,25 @@
 package ImageGeneration.Attributes;
 
+import com.sun.istack.internal.NotNull;
+
 import java.util.HashMap;
 
 //TODO: Add more attributes
-//TODO: Refactor to remove duplicate code
 public class VCAttributes {
 
-    public static class Builder {
-
-        private HashMap<Class, Attribute> attributes;
-        private FileTypeAttribute fileTypePreferred;
-
-        public Builder() {
-            attributes = new HashMap<>();
-
-            //Default file type is PNG
-            fileTypePreferred = new FileTypeAttribute(FileType.PNG);
-        }
-
-        public Builder algorithm(String algorithm) {
-            if(algorithm == null) {
-                return this;
-            }
-
-            attributes.put(AlgorithmAttribute.class, new AlgorithmAttribute(algorithm));
-            return this;
-        }
-
-        public Builder fileType(FileType fileType) {
-            if(fileType == null) {
-                return this;
-            }
-
-            fileTypePreferred = new FileTypeAttribute(fileType);
-            return this;
-        }
-
-        public Builder imageSize(Integer size) {
-            if(size == null) {
-                return this;
-            }
-
-            attributes.put(SizeAttribute.class, new SizeAttribute(size));
-            return this;
-        }
-
-        public Builder backgroundColor(BackgroundColor color) {
-            if(color == null) {
-                return this;
-            }
-
-            attributes.put(BackgroundColorAttribute.class, new BackgroundColorAttribute(color));
-            return this;
-        }
-
-        public Builder puzzleType(Integer size) {
-            if(size == null) {
-                return this;
-            }
-
-            attributes.put(PuzzleTypeAttribute.class, new PuzzleTypeAttribute(size));
-            return this;
-        }
-
-        public Builder algorithmCase(String algorithm) {
-            if(algorithm == null) {
-                return this;
-            }
-
-            attributes.put(CaseAttribute.class, new CaseAttribute(algorithm));
-            return this;
-        }
-
-        public Builder stageMask(StageMaskType mask) {
-            if(mask == null) {
-                return this;
-            }
-
-            attributes.put(StageMaskType.class, new StageMaskAttribute(mask));
-            return this;
-        }
-
-        public Builder view(ViewType view) {
-            if(view == null) {
-                return this;
-            }
-
-            attributes.put(ViewAttribute.class, new ViewAttribute(view));
-            return this;
-        }
-
-        public VCAttributes build() {
-            VCAttributes pref = new VCAttributes();
-            pref.attributes = this.attributes;
-            pref.fileTypePreferred = this.fileTypePreferred;
-            return pref;
-        }
-    }
-
     private HashMap<Class, Attribute> attributes;
+
+    @NotNull
     private FileTypeAttribute fileTypePreferred;
 
     public VCAttributes() {
-        attributes = new HashMap<>();
-
         //Default file type is PNG
-        fileTypePreferred = new FileTypeAttribute(FileType.PNG);
+        this(FileType.PNG);
+    }
+
+    public VCAttributes(FileType fileType) {
+        attributes = new HashMap<>();
+        fileTypePreferred = new FileTypeAttribute(fileType);
     }
 
     @Override
@@ -146,76 +60,75 @@ public class VCAttributes {
 
     //====================================Setters====================================
 
-    public void algorithm(String algorithm) {
+    public VCAttributes algorithm(String algorithm) {
         if(algorithm == null) {
-            return;
+            return this;
         }
 
         attributes.put(AlgorithmAttribute.class, new AlgorithmAttribute(algorithm));
-        return;
+        return this;
     }
 
-    public void fileType(FileType fileType) {
+    public VCAttributes fileType(FileType fileType) {
         if(fileType == null) {
-            return;
+            return this;
         }
 
         fileTypePreferred = new FileTypeAttribute(fileType);
-        return;
+        return this;
     }
 
-    public void imageSize(Integer size) {
+    public VCAttributes imageSize(Integer size) {
         if(size == null) {
-            return;
+            return this;
         }
 
-
         attributes.put(SizeAttribute.class, new SizeAttribute(size));
-        return;
+        return this;
     }
 
-    public void backgroundColor(BackgroundColor color) {
+    public VCAttributes backgroundColor(BackgroundColor color) {
         if(color == null) {
-            return;
+            return this;
         }
 
         attributes.put(BackgroundColorAttribute.class, new BackgroundColorAttribute(color));
-        return;
+        return this;
     }
 
-    public void puzzleType(Integer size) {
+    public VCAttributes puzzleType(Integer size) {
         if(size == null) {
-            return;
+            return this;
         }
 
         attributes.put(PuzzleTypeAttribute.class, new PuzzleTypeAttribute(size));
-        return;
+        return this;
     }
 
-    public void algorithmCase(String algorithm) {
+    public VCAttributes algorithmCase(String algorithm) {
         if(algorithm == null) {
-            return;
+            return this;
         }
 
         attributes.put(CaseAttribute.class, new CaseAttribute(algorithm));
-        return;
+        return this;
     }
 
-    public void stageMask(StageMaskType mask) {
+    public VCAttributes stageMask(StageMaskType mask) {
         if(mask == null) {
-            return;
+            return this;
         }
 
         attributes.put(StageMaskType.class, new StageMaskAttribute(mask));
-        return;
+        return this;
     }
 
-    public void view(ViewType view) {
+    public VCAttributes view(ViewType view) {
         if(view == null) {
-            return;
+            return this;
         }
 
         attributes.put(ViewAttribute.class, new ViewAttribute(view));
-        return;
+        return this;
     }
 }

@@ -10,7 +10,6 @@ import java.net.URL;
 //TODO: restrict the cache to a specified size / # of images
 //TODO: Implement LRU algorithm
 //TODO: Add config file for fields
-//TODO: auto generate cache folder if it doesn't exist
 
 class ImageCache {
 

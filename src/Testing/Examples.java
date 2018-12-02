@@ -11,20 +11,18 @@ public class Examples {
         VCAttributes attributes = new VCAttributes();
         VisualCube.saveImageWithAttributesToFile(attributes, "examples/example_1");
 
-        attributes = new VCAttributes.Builder()
+        attributes = new VCAttributes()
                 .backgroundColor(BackgroundColor.TRANSPARENT)
                 .algorithm("S2 E2 M2")
-                .imageSize(250)
-                .build();
+                .imageSize(250);
 
         VisualCube.saveImageWithAttributesToFile(attributes, "examples/example_2");
 
-        attributes = new VCAttributes.Builder()
+        attributes = new VCAttributes()
                 .backgroundColor(BackgroundColor.TRANSPARENT)
                 .algorithmCase("R U R'")
                 .stageMask(StageMaskType.F2L)
-                .imageSize(250)
-                .build();
+                .imageSize(250);
 
         VisualCube.saveImageWithAttributesToFile(attributes, "examples/example_3");
     }

@@ -31,13 +31,12 @@ attributes.backgroundColor(BackgroundColor.TRANSPARENT);
 attributes.algorithm("S2 E2 M2");
 ```
 
-or use the `VCAttributes.Builder`
+or chain them together
 
 ```java
-VCAttributes attributes = new VCAttributes.Builder()
+VCAttributes attributes = new VCAttributes()
                 .backgroundColor(BackgroundColor.TRANSPARENT)
-                .algorithm("S2 E2 M2")
-                .build();
+                .algorithm("S2 E2 M2");
 ```
 
 
@@ -63,33 +62,31 @@ VCAttributes attributes = new VCAttributes();
 VisualCube.saveImageWithAttributesToFile(attributes, "examples/example_1");
 ```
 
-![alt text](https://github.com/jbeck18/VisualCube/blob/master/examples/example_1.png "Example 1")
+![Solved Cube](https://github.com/jbeck18/VisualCube/blob/master/examples/example_1.png "Example 1")
 
 #### Example 2
 
 ```java
-VCAttributes attributes = new VCAttributes.Builder()
+VCAttributes attributes = new VCAttributes()
                 .backgroundColor(BackgroundColor.TRANSPARENT)
                 .algorithm("S2 E2 M2")
-                .imageSize(250)
-                .build();
+                .imageSize(250);
 
 VisualCube.saveImageWithAttributesToFile(preferences, "examples/example_2");
 ```
 
-![alt text](https://github.com/jbeck18/VisualCube/blob/master/examples/example_2.png "Example 2")
+![Checkerboard Pattern Cube](https://github.com/jbeck18/VisualCube/blob/master/examples/example_2.png "Example 2")
 
 #### Example 3
 
 ```java
-VCAttributes attributes = new VCAttributes.Builder()
+VCAttributes attributes = new VCAttributes()
                 .backgroundColor(BackgroundColor.TRANSPARENT)
                 .algorithmCase("R U R'")
                 .stageMask(StageMaskType.F2L)
-                .imageSize(250)
-                .build();
+                .imageSize(250);
 
 VisualCube.saveImageWithAttributesToFile(attributes, "examples/example_3");
 ```
 
-![alt text](https://github.com/jbeck18/VisualCube/blob/master/examples/example_3.png "Example 3")
+![F2L Stage Cube](https://github.com/jbeck18/VisualCube/blob/master/examples/example_3.png "Example 3")
