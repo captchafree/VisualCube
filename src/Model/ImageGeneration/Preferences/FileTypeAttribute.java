@@ -1,12 +1,12 @@
 package Model.ImageGeneration.Preferences;
 
-class FileTypePreference extends Preference {
+class FileTypeAttribute extends Attribute {
 
-    FileTypePreference(FileType fileType) {
+    FileTypeAttribute(FileType fileType) {
         super(fileType.toString());
     }
 
-    FileTypePreference() {
+    FileTypeAttribute() {
         this(FileType.PNG);
     }
 

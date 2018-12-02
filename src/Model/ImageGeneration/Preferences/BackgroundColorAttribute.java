@@ -1,12 +1,12 @@
 package Model.ImageGeneration.Preferences;
 
-class BackgroundColorPreference extends Preference {
+class BackgroundColorAttribute extends Attribute {
 
-    BackgroundColorPreference(BackgroundColor color) {
+    BackgroundColorAttribute(BackgroundColor color) {
         super(color.toString());
     }
 
-    BackgroundColorPreference() {
+    BackgroundColorAttribute() {
         this(BackgroundColor.WHITE);
     }
 

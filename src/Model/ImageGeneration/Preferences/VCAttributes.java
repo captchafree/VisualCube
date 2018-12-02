@@ -8,24 +8,25 @@ import Model.ImageGeneration.Exceptions.SizeOutOfBoundsException;
 import java.util.HashMap;
 
 //TODO: Add more preferences
-public class CubeImagePreferences {
+//TODO: Refactor to remove duplilcate code
+public class VCAttributes {
 
     public static class Builder {
 
-        private HashMap<Class, Preference> preferences;
-        private FileTypePreference fileTypePreferred;
+        private HashMap<Class, Attribute> preferences;
+        private FileTypeAttribute fileTypePreferred;
 
         public Builder() {
             preferences = new HashMap<>();
 
             //Default file type is PNG
-            fileTypePreferred = new FileTypePreference(FileType.PNG);
+            fileTypePreferred = new FileTypeAttribute(FileType.PNG);
         }
 
         //TODO: Replace numbers >4 with that number % 4
         private boolean verifyAlgorithmm(String algorithm) {
             String validCharacters = "UDFBLRSEM";
-            validCharacters += validCharacters.toLowerCase() + "'23";
+            validCharacters += validCharacters.toLowerCase() + "'23xyz";
 
             return algorithm.matches("[" + validCharacters + "]*");
         }
@@ -37,12 +38,12 @@ public class CubeImagePreferences {
             algorithm = algorithm.replace(" ", "");
             if (!verifyAlgorithmm(algorithm)) {
                 String validCharacters = "UDFBLRSEM";
-                validCharacters += validCharacters.toLowerCase() + "'23";
+                validCharacters += validCharacters.toLowerCase() + "'23xyz";
 
                 throw new InvalidAlgorithmException("An algorithm case can consist of only the characters in the set {" +
                         validCharacters.join(", ", validCharacters.split("")) + "}");
             }
-            preferences.put(AlgorithmPreference.class, new AlgorithmPreference(algorithm));
+            preferences.put(AlgorithmAttribute.class, new AlgorithmAttribute(algorithm));
             return this;
         }
 
@@ -51,7 +52,7 @@ public class CubeImagePreferences {
                 return this;
             }
 
-            fileTypePreferred = new FileTypePreference(fileType);
+            fileTypePreferred = new FileTypeAttribute(fileType);
             return this;
         }
 
@@ -63,7 +64,7 @@ public class CubeImagePreferences {
             if (size < 0 || size > 1024) {
                 throw new SizeOutOfBoundsException("An image's size must be a value between 1 and 1024");
             }
-            preferences.put(SizePreference.class, new SizePreference(size));
+            preferences.put(SizeAttribute.class, new SizeAttribute(size));
             return this;
         }
 
@@ -72,7 +73,7 @@ public class CubeImagePreferences {
                 return this;
             }
 
-            preferences.put(BackgroundColorPreference.class, new BackgroundColorPreference(color));
+            preferences.put(BackgroundColorAttribute.class, new BackgroundColorAttribute(color));
             return this;
         }
 
@@ -84,7 +85,7 @@ public class CubeImagePreferences {
             if (size < 1 || size > 10) {
                 throw new PuzzleTypeOutOfBoundsException("A puzzle type must be an integer between 1 and 10");
             }
-            preferences.put(PuzzleTypePreference.class, new PuzzleTypePreference(size));
+            preferences.put(PuzzleTypeAttribute.class, new PuzzleTypeAttribute(size));
             return this;
         }
 
@@ -95,12 +96,12 @@ public class CubeImagePreferences {
             algorithm = algorithm.replace(" ", "");
             if (!verifyAlgorithmm(algorithm)) {
                 String validCharacters = "UDFBLRSEM";
-                validCharacters += validCharacters.toLowerCase() + "'23";
+                validCharacters += validCharacters.toLowerCase() + "'23xyz";
 
                 throw new InvalidCaseException("An algorithm case can consist of only the characters in the set {" +
                         validCharacters.join(", ", validCharacters.split("")) + "}");
             }
-            preferences.put(CasePreference.class, new CasePreference(algorithm));
+            preferences.put(CaseAttribute.class, new CaseAttribute(algorithm));
             return this;
         }
 
@@ -109,7 +110,7 @@ public class CubeImagePreferences {
                 return this;
             }
 
-            preferences.put(StageMaskType.class, new StageMaskPreference(mask));
+            preferences.put(StageMaskType.class, new StageMaskAttribute(mask));
             return this;
         }
 
@@ -118,26 +119,31 @@ public class CubeImagePreferences {
                 return this;
             }
 
-            preferences.put(ViewPreference.class, new ViewPreference(view));
+            preferences.put(ViewAttribute.class, new ViewAttribute(view));
             return this;
         }
 
-        public CubeImagePreferences build() {
-            CubeImagePreferences pref = new CubeImagePreferences();
+        public VCAttributes build() {
+            VCAttributes pref = new VCAttributes();
             pref.preferences = this.preferences;
             pref.fileTypePreferred = this.fileTypePreferred;
             return pref;
         }
     }
 
-    private HashMap<Class, Preference> preferences;
-    private FileTypePreference fileTypePreferred;
+    private HashMap<Class, Attribute> preferences;
+    private FileTypeAttribute fileTypePreferred;
 
-    private CubeImagePreferences() {}
+    public VCAttributes() {
+        preferences = new HashMap<>();
+
+        //Default file type is PNG
+        fileTypePreferred = new FileTypeAttribute(FileType.PNG);
+    }
 
     @Override
     public String toString() {
-        Preference[] prefs = preferences.values().toArray(new Preference[0]);
+        Attribute[] prefs = preferences.values().toArray(new Attribute[0]);
         String[] terms = new String[prefs.length + 1];
 
         for(int i = 0; i < prefs.length; i++) {
@@ -150,6 +156,10 @@ public class CubeImagePreferences {
         return result;
     }
 
+    /**
+     * Gets the file extension associated with the preferences.
+     * @return
+     */
     public String getFileExtension() {
         return fileTypePreferred.getValue();
     }
@@ -158,7 +168,7 @@ public class CubeImagePreferences {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CubeImagePreferences that = (CubeImagePreferences) o;
+        VCAttributes that = (VCAttributes) o;
         return that.hashCode() == this.hashCode();
     }
 
@@ -172,7 +182,7 @@ public class CubeImagePreferences {
     //TODO: Replace numbers >4 with that number % 4
     private boolean verifyAlgorithmm(String algorithm) {
         String validCharacters = "UDFBLRSEM";
-        validCharacters += validCharacters.toLowerCase() + "'23";
+        validCharacters += validCharacters.toLowerCase() + "'23xyz";
 
         return algorithm.matches("[" + validCharacters + "]*");
     }
@@ -184,12 +194,12 @@ public class CubeImagePreferences {
         algorithm = algorithm.replace(" ", "");
         if (!verifyAlgorithmm(algorithm)) {
             String validCharacters = "UDFBLRSEM";
-            validCharacters += validCharacters.toLowerCase() + "'23";
+            validCharacters += validCharacters.toLowerCase() + "'23xyz";
 
             throw new InvalidAlgorithmException("An algorithm case can consist of only the characters in the set {" +
                     validCharacters.join(", ", validCharacters.split("")) + "}");
         }
-        preferences.put(AlgorithmPreference.class, new AlgorithmPreference(algorithm));
+        preferences.put(AlgorithmAttribute.class, new AlgorithmAttribute(algorithm));
         return;
     }
 
@@ -198,7 +208,7 @@ public class CubeImagePreferences {
             return;
         }
 
-        fileTypePreferred = new FileTypePreference(fileType);
+        fileTypePreferred = new FileTypeAttribute(fileType);
         return;
     }
 
@@ -210,7 +220,7 @@ public class CubeImagePreferences {
         if (size < 0 || size > 1024) {
             throw new SizeOutOfBoundsException("An image's size must be a value between 1 and 1024");
         }
-        preferences.put(SizePreference.class, new SizePreference(size));
+        preferences.put(SizeAttribute.class, new SizeAttribute(size));
         return;
     }
 
@@ -219,7 +229,7 @@ public class CubeImagePreferences {
             return;
         }
 
-        preferences.put(BackgroundColorPreference.class, new BackgroundColorPreference(color));
+        preferences.put(BackgroundColorAttribute.class, new BackgroundColorAttribute(color));
         return;
     }
 
@@ -231,7 +241,7 @@ public class CubeImagePreferences {
         if (size < 1 || size > 10) {
             throw new PuzzleTypeOutOfBoundsException("A puzzle type must be an integer between 1 and 10");
         }
-        preferences.put(PuzzleTypePreference.class, new PuzzleTypePreference(size));
+        preferences.put(PuzzleTypeAttribute.class, new PuzzleTypeAttribute(size));
         return;
     }
 
@@ -243,12 +253,12 @@ public class CubeImagePreferences {
         System.out.println(algorithm);
         if (!verifyAlgorithmm(algorithm)) {
             String validCharacters = "UDFBLRSEM";
-            validCharacters += validCharacters.toLowerCase() + "'23";
+            validCharacters += validCharacters.toLowerCase() + "'23xyz";
 
             throw new InvalidCaseException("An algorithm case can consist of only the characters in the set {" +
                     validCharacters.join(", ", validCharacters.split("")) + "}");
         }
-        preferences.put(CasePreference.class, new CasePreference(algorithm));
+        preferences.put(CaseAttribute.class, new CaseAttribute(algorithm));
         return;
     }
 
@@ -257,7 +267,7 @@ public class CubeImagePreferences {
             return;
         }
 
-        preferences.put(StageMaskType.class, new StageMaskPreference(mask));
+        preferences.put(StageMaskType.class, new StageMaskAttribute(mask));
         return;
     }
 
@@ -266,7 +276,7 @@ public class CubeImagePreferences {
             return;
         }
 
-        preferences.put(ViewPreference.class, new ViewPreference(view));
+        preferences.put(ViewAttribute.class, new ViewAttribute(view));
         return;
     }
 }

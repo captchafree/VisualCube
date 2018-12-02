@@ -1,12 +1,12 @@
 package Model.ImageGeneration.Preferences;
 
-public class SizePreference extends Preference {
+public class SizeAttribute extends Attribute {
 
-    SizePreference(Integer size) {
+    SizeAttribute(Integer size) {
         super(size.toString());
     }
 
-    SizePreference() {
+    SizeAttribute() {
         this(250);
     }
 

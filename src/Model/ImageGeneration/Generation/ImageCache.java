@@ -1,6 +1,6 @@
 package Model.ImageGeneration.Generation;
 
-import Model.ImageGeneration.Preferences.CubeImagePreferences;
+import Model.ImageGeneration.Preferences.VCAttributes;
 
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -17,15 +17,15 @@ class ImageCache {
     private static ImageCache instance;
 
     //The directory to store the cached images
-    private static final String cacheDirectory = "image_cache/";
+    private static final String cacheDirectory = "VisualCube/cache/";
 
     //The url of visual cube
-    private static final String url = "http://68.183.24.81/visualcube/visualcube.php?";
+    private static String url = "http://cube.crider.co.uk/visualcube.php?";
 
     private ImageCache() {
         File cache = new File(cacheDirectory);
         if(!cache.exists()) {
-            cache.mkdir();
+            cache.mkdirs();
         }
     }
 
@@ -36,7 +36,16 @@ class ImageCache {
         return instance;
     }
 
-    BufferedImage get(CubeImagePreferences pref) {
+    /**
+     * Sets the url that the generator will attempt to connect to. The url must be running an instance of VisualCube
+     * in order for image generation to work. By default the url is VisualCube's author's website (http://cube.crider.co.uk/visualcube.php).
+     * @param url The url to be used for image generation
+     */
+    public void setURL(String url) {
+        this.url = url + "?";
+    }
+
+    BufferedImage get(VCAttributes pref) {
         File cachedImage = new File(cacheDirectory + pref.hashCode() + "." + pref.getFileExtension());
         if(cachedImage.exists()) {
             return ImageHandler.getImage(cachedImage);

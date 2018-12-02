@@ -1,8 +1,8 @@
 package Model.ImageGeneration.Preferences;
 
-class ViewPreference extends Preference {
+class ViewAttribute extends Attribute {
 
-    ViewPreference(ViewType view) {
+    ViewAttribute(ViewType view) {
         super(view.toString());
     }
 

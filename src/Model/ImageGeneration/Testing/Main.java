@@ -1,10 +1,9 @@
 package Model.ImageGeneration.Testing;
 
-import Model.ImageGeneration.Generation.CubeImageGenerator;
-import Model.ImageGeneration.Preferences.CubeImagePreferences;
+import Model.ImageGeneration.Generation.VisualCube;
+import Model.ImageGeneration.Preferences.VCAttributes;
 import Model.ImageGeneration.Preferences.BackgroundColor;
 import Model.ImageGeneration.Preferences.FileType;
-import Model.ImageGeneration.Preferences.StageMaskType;
 
 //TODO: Add a way to generate all algorithms listed in a text file using some custom thread object
 //TODO: Integrate with AlgDB
@@ -15,7 +14,7 @@ public class Main {
     }
 
     private static void runTests() {
-        CubeImagePreferences pref = new CubeImagePreferences.Builder()
+        VCAttributes pref = new VCAttributes.Builder()
                 .algorithmCase("R U R' U'")
                 .fileType(FileType.PNG)
                 .imageSize(250)
@@ -24,10 +23,10 @@ public class Main {
                 .stageMask(null)
                 .build();
 
-        pref.algorithmCase("S2M2E2");
+        //pref.algorithmCase("S2M2E2");
 
         System.out.println(pref.toString());
 
-        CubeImageGenerator.getImageWithPreferences(pref);
+        VisualCube.getImageWithPreferences(pref);
     }
 }
