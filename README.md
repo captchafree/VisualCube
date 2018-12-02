@@ -1,5 +1,5 @@
 # VisualCube
-A java framework that uses [VisualCube](http://cube.crider.co.uk/visualcube.php) to generate static images of Rubik's cubes.
+A java framework that uses [VisualCube](http://cube.crider.co.uk/visualcube.php) to generate static images of Rubik's cubes. It needs an internet connection to generate an image the first time, but caches it so it can be accessed again without one.
 
 ## Installation
 To use VisualCube all you need to do is [download the jar file](https://github.com/jbeck18/VisualCube/blob/master/VisualCube.jar) and add it to your project.
