@@ -16,7 +16,7 @@ public class Main {
 
     private static void runTests() {
         CubeImagePreferences pref = new CubeImagePreferences.Builder()
-                .algorithmCase("RUR'U'")
+                .algorithmCase("R U R' U'")
                 .fileType(FileType.PNG)
                 .imageSize(250)
                 .puzzleType(3)
