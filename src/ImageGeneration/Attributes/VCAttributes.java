@@ -2,6 +2,7 @@ package ImageGeneration.Attributes;
 
 import com.sun.istack.internal.NotNull;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 //TODO: Add more attributes
@@ -25,6 +26,8 @@ public class VCAttributes {
     @Override
     public String toString() {
         Attribute[] prefs = attributes.values().toArray(new Attribute[0]);
+        Arrays.sort(prefs);
+
         String[] terms = new String[prefs.length + 1];
 
         for(int i = 0; i < prefs.length; i++) {
