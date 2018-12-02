@@ -3,7 +3,7 @@ package ImageGeneration.Attributes;
 class BackgroundColorAttribute extends Attribute {
 
     BackgroundColorAttribute(BackgroundColor color) {
-        super(color.toString());
+        super(color);
     }
 
     BackgroundColorAttribute() {
@@ -13,5 +13,11 @@ class BackgroundColorAttribute extends Attribute {
     @Override
     String getIdentifier() {
         return "bg";
+    }
+
+    @Override
+    protected String validateInput(Object input) {
+        BackgroundColor color = (BackgroundColor) input;
+        return color.toString();
     }
 }

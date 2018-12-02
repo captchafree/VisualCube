@@ -7,7 +7,7 @@ class AlgorithmAttribute extends Attribute {
     private static final String validCharacters = "UDFBLRSEMudfblrsemm'23xyz";
 
     AlgorithmAttribute(String algorithm) {
-        super(verifyAlgorithm(algorithm));
+        super(algorithm);
     }
 
     @Override
@@ -15,7 +15,10 @@ class AlgorithmAttribute extends Attribute {
         return "alg";
     }
 
-    private static String verifyAlgorithm(String algorithm) {
+    @Override
+    protected String validateInput(Object input) {
+        String algorithm = (String) input;
+
         algorithm = algorithm.replace(" ", "");
         boolean isValid =  algorithm.matches("[" + validCharacters + "]*");
         if(!isValid) {

@@ -4,11 +4,13 @@ abstract class Attribute {
 
     private String value;
 
-    Attribute(String value) {
-        this.value = value;
+    Attribute(Object value) {
+        this.value = validateInput(value);
     }
 
     abstract String getIdentifier();
+
+    protected abstract String validateInput(Object input);
 
     String getValue() {
         return this.value;

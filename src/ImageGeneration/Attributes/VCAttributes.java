@@ -1,10 +1,5 @@
 package ImageGeneration.Attributes;
 
-import ImageGeneration.Exceptions.InvalidAlgorithmException;
-import ImageGeneration.Exceptions.InvalidCaseException;
-import ImageGeneration.Exceptions.PuzzleTypeOutOfBoundsException;
-import ImageGeneration.Exceptions.SizeOutOfBoundsException;
-
 import java.util.HashMap;
 
 //TODO: Add more attributes
@@ -130,7 +125,7 @@ public class VCAttributes {
 
     /**
      * Gets the file extension associated with the attributes.
-     * @return
+     * @return the file extension (e.g. "png", "jpg", "gif")
      */
     public String getFileExtension() {
         return fileTypePreferred.getValue();
