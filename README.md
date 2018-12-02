@@ -74,7 +74,7 @@ VCAttributes attributes = new VCAttributes.Builder()
                 .imageSize(250)
                 .build();
 
-VisualCube.saveImageWithAttributesToFile(preferences, "examples/example_2");
+VisualCube.saveImageWithAttributesToFile(attributes, "examples/example_2");
 ```
 
 ![alt text](https://github.com/jbeck18/VisualCube/blob/master/examples/example_2.png "Example 2")
