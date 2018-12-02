@@ -21,7 +21,7 @@ The `VCAttributes` class stores the attributes that you want the generated image
 | .algorithm() | Algorithm to apply | [UDLRFBudlrfbMESxyz'23]* | None |
 | .algorithmCase() | Algorithm to solve case | [UDLRFBudlrfbMESxyz'23]* | None |
 
-### Creating attributes
+### Generating Images
 
 To add attributes either create a `VCAttributes` object and add them one at a time
 
@@ -40,13 +40,25 @@ VCAttributes attributes = new VCAttributes.Builder()
                 .build();
 ```
 
+Then, either generate a `BufferedImage` object
+
+```java
+BufferedImage result = VisualCube.getImageWithAttributes(attributes);
+```
+
+or directly save the generated image to a file
+
+```java
+VisualCube.saveImageWithAttributesToFile(attributes, "CubeImage");
+```
+
 ### Examples
 
 #### Example 1
 
 ```java
 VCAttributes attributes = new VCAttributes();
-BufferedImage img = VisualCube.getImageWithPreferences(preferences);
+VisualCube.saveImageWithAttributesToFile(attributes, "examples/example_1");
 ```
 
 ![alt text](https://github.com/jbeck18/VisualCube/blob/master/examples/example_1.png "Example 1")
@@ -60,7 +72,7 @@ VCAttributes attributes = new VCAttributes.Builder()
                 .imageSize(250)
                 .build();
 
-VisualCube.saveImageWithPreferencesToFile(preferences, "examples/example_2");
+VisualCube.saveImageWithAttributesToFile(preferences, "examples/example_2");
 ```
 
 ![alt text](https://github.com/jbeck18/VisualCube/blob/master/examples/example_2.png "Example 2")
@@ -75,7 +87,7 @@ VCAttributes attributes = new VCAttributes.Builder()
                 .imageSize(250)
                 .build();
 
-VisualCube.saveImageWithPreferencesToFile(attributes, "examples/example_3");
+VisualCube.saveImageWithAttributesToFile(attributes, "examples/example_3");
 ```
 
 ![alt text](https://github.com/jbeck18/VisualCube/blob/master/examples/example_3.png "Example 3")
