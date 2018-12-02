@@ -1,4 +1,4 @@
-package Model.ImageGeneration.Preferences;
+package ImageGeneration.Preferences;
 
 class AlgorithmAttribute extends Attribute {
 

@@ -1,4 +1,4 @@
-package Model.ImageGeneration.Preferences;
+package ImageGeneration.Preferences;
 
 public class SizeAttribute extends Attribute {
 

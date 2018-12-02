@@ -1,4 +1,4 @@
-package Model.ImageGeneration.Exceptions;
+package ImageGeneration.Exceptions;
 
 public class InvalidAlgorithmException extends PreferenceException {
 

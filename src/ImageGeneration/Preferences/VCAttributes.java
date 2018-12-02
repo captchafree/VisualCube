@@ -1,9 +1,9 @@
-package Model.ImageGeneration.Preferences;
+package ImageGeneration.Preferences;
 
-import Model.ImageGeneration.Exceptions.InvalidAlgorithmException;
-import Model.ImageGeneration.Exceptions.InvalidCaseException;
-import Model.ImageGeneration.Exceptions.PuzzleTypeOutOfBoundsException;
-import Model.ImageGeneration.Exceptions.SizeOutOfBoundsException;
+import ImageGeneration.Exceptions.InvalidAlgorithmException;
+import ImageGeneration.Exceptions.InvalidCaseException;
+import ImageGeneration.Exceptions.PuzzleTypeOutOfBoundsException;
+import ImageGeneration.Exceptions.SizeOutOfBoundsException;
 
 import java.util.HashMap;
 
