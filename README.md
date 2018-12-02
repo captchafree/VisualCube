@@ -12,12 +12,12 @@ The `VCAttributes` class stores the attributes that you want the generated image
 
 | Function | Description | Value Range | Default |
 |----------|:-------------:|:-------------:|:---------:|
-| .fileType() | Image format | png \| gif \| jpg | png |
-| .backgroundColor() | Background Color | transparent \| black \| dark_gray \| gray \| silver \| white \| yellow \| red \| orange \| blue \| green \| purple \| pink | white |
-| .puzzleType() | PuzzleType | 1 - 10 | 3 |
+| .fileType() | Image format | png \| gif \| jpeg | png |
+| .backgroundColor() | Background color | transparent \| black \| dark_gray \| gray \| silver \| white \| yellow \| red \| orange \| blue \| green \| purple \| pink | white |
+| .puzzleType() | Puzzle type | 1 - 10 | 3 |
 | .imageSize() | Size of the generated image | 0 - 1024 | 128 |
 | .view() | Special view | plan \| trans | None |
-| .stageMask() | Stage Mask | fl \| f2l \| ll \| cll \| ell \| oll \| ocll \| oell \| coll \| ocell \| wv \| vh \| els \| cls \| cmll \| cross \| f2l_3 \| f2l_2 \| f2l_sm \| f2l_1 \| f2b \| line | None |
+| .stageMask() | Stage mask | fl \| f2l \| ll \| cll \| ell \| oll \| ocll \| oell \| coll \| ocell \| wv \| vh \| els \| cls \| cmll \| cross \| f2l_3 \| f2l_2 \| f2l_sm \| f2l_1 \| f2b \| line | None |
 | .algorithm() | Algorithm to apply | [UDLRFBudlrfbMESxyz'23]* | None |
 | .algorithmCase() | Algorithm to solve case | [UDLRFBudlrfbMESxyz'23]* | None |
 
@@ -31,13 +31,12 @@ attributes.backgroundColor(BackgroundColor.TRANSPARENT);
 attributes.algorithm("S2 E2 M2");
 ```
 
-or use the `VCAttributes.Builder`
+or chain them together
 
 ```java
-VCAttributes attributes = new VCAttributes.Builder()
+VCAttributes attributes = new VCAttributes()
                 .backgroundColor(BackgroundColor.TRANSPARENT)
-                .algorithm("S2 E2 M2")
-                .build();
+                .algorithm("S2 E2 M2");
 ```
 
 
@@ -63,33 +62,31 @@ VCAttributes attributes = new VCAttributes();
 VisualCube.saveImageWithAttributesToFile(attributes, "examples/example_1");
 ```
 
-![alt text](https://github.com/jbeck18/VisualCube/blob/master/examples/example_1.png "Example 1")
+![Solved Cube](https://github.com/jbeck18/VisualCube/blob/master/examples/example_1.png "Example 1")
 
 #### Example 2
 
 ```java
-VCAttributes attributes = new VCAttributes.Builder()
+VCAttributes attributes = new VCAttributes()
                 .backgroundColor(BackgroundColor.TRANSPARENT)
                 .algorithm("S2 E2 M2")
-                .imageSize(250)
-                .build();
+                .imageSize(250);
 
 VisualCube.saveImageWithAttributesToFile(attributes, "examples/example_2");
 ```
 
-![alt text](https://github.com/jbeck18/VisualCube/blob/master/examples/example_2.png "Example 2")
+![Checkerboard Pattern Cube](https://github.com/jbeck18/VisualCube/blob/master/examples/example_2.png "Example 2")
 
 #### Example 3
 
 ```java
-VCAttributes attributes = new VCAttributes.Builder()
+VCAttributes attributes = new VCAttributes()
                 .backgroundColor(BackgroundColor.TRANSPARENT)
                 .algorithmCase("R U R'")
                 .stageMask(StageMaskType.F2L)
-                .imageSize(250)
-                .build();
+                .imageSize(250);
 
 VisualCube.saveImageWithAttributesToFile(attributes, "examples/example_3");
 ```
 
-![alt text](https://github.com/jbeck18/VisualCube/blob/master/examples/example_3.png "Example 3")
+![F2L Stage Cube](https://github.com/jbeck18/VisualCube/blob/master/examples/example_3.png "Example 3")

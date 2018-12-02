@@ -1,149 +1,30 @@
 package ImageGeneration.Attributes;
 
-import ImageGeneration.Exceptions.InvalidAlgorithmException;
-import ImageGeneration.Exceptions.InvalidCaseException;
-import ImageGeneration.Exceptions.PuzzleTypeOutOfBoundsException;
-import ImageGeneration.Exceptions.SizeOutOfBoundsException;
+import com.sun.istack.internal.NotNull;
 
 import java.util.HashMap;
 
-//TODO: Add more preferences
-//TODO: Refactor to remove duplilcate code
+//TODO: Add more attributes
 public class VCAttributes {
 
-    public static class Builder {
+    private HashMap<Class, Attribute> attributes;
 
-        private HashMap<Class, Attribute> preferences;
-        private FileTypeAttribute fileTypePreferred;
-
-        public Builder() {
-            preferences = new HashMap<>();
-
-            //Default file type is PNG
-            fileTypePreferred = new FileTypeAttribute(FileType.PNG);
-        }
-
-        //TODO: Replace numbers >4 with that number % 4
-        private boolean verifyAlgorithmm(String algorithm) {
-            String validCharacters = "UDFBLRSEM";
-            validCharacters += validCharacters.toLowerCase() + "'23xyz";
-
-            return algorithm.matches("[" + validCharacters + "]*");
-        }
-
-        public Builder algorithm(String algorithm) {
-            if(algorithm == null) {
-                return this;
-            }
-            algorithm = algorithm.replace(" ", "");
-            if (!verifyAlgorithmm(algorithm)) {
-                String validCharacters = "UDFBLRSEM";
-                validCharacters += validCharacters.toLowerCase() + "'23xyz";
-
-                throw new InvalidAlgorithmException("An algorithm case can consist of only the characters in the set {" +
-                        validCharacters.join(", ", validCharacters.split("")) + "}");
-            }
-            preferences.put(AlgorithmAttribute.class, new AlgorithmAttribute(algorithm));
-            return this;
-        }
-
-        public Builder fileType(FileType fileType) {
-            if(fileType == null) {
-                return this;
-            }
-
-            fileTypePreferred = new FileTypeAttribute(fileType);
-            return this;
-        }
-
-        public Builder imageSize(Integer size) {
-            if(size == null) {
-                return this;
-            }
-
-            if (size < 0 || size > 1024) {
-                throw new SizeOutOfBoundsException("An image's size must be a value between 1 and 1024");
-            }
-            preferences.put(SizeAttribute.class, new SizeAttribute(size));
-            return this;
-        }
-
-        public Builder backgroundColor(BackgroundColor color) {
-            if(color == null) {
-                return this;
-            }
-
-            preferences.put(BackgroundColorAttribute.class, new BackgroundColorAttribute(color));
-            return this;
-        }
-
-        public Builder puzzleType(Integer size) {
-            if(size == null) {
-                return this;
-            }
-
-            if (size < 1 || size > 10) {
-                throw new PuzzleTypeOutOfBoundsException("A puzzle type must be an integer between 1 and 10");
-            }
-            preferences.put(PuzzleTypeAttribute.class, new PuzzleTypeAttribute(size));
-            return this;
-        }
-
-        public Builder algorithmCase(String algorithm) {
-            if(algorithm == null) {
-                return this;
-            }
-            algorithm = algorithm.replace(" ", "");
-            if (!verifyAlgorithmm(algorithm)) {
-                String validCharacters = "UDFBLRSEM";
-                validCharacters += validCharacters.toLowerCase() + "'23xyz";
-
-                throw new InvalidCaseException("An algorithm case can consist of only the characters in the set {" +
-                        validCharacters.join(", ", validCharacters.split("")) + "}");
-            }
-            preferences.put(CaseAttribute.class, new CaseAttribute(algorithm));
-            return this;
-        }
-
-        public Builder stageMask(StageMaskType mask) {
-            if(mask == null) {
-                return this;
-            }
-
-            preferences.put(StageMaskType.class, new StageMaskAttribute(mask));
-            return this;
-        }
-
-        public Builder view(ViewType view) {
-            if(view == null) {
-                return this;
-            }
-
-            preferences.put(ViewAttribute.class, new ViewAttribute(view));
-            return this;
-        }
-
-        public VCAttributes build() {
-            VCAttributes pref = new VCAttributes();
-            pref.preferences = this.preferences;
-            pref.fileTypePreferred = this.fileTypePreferred;
-            return pref;
-        }
-    }
-
-    private HashMap<Class, Attribute> preferences;
+    @NotNull
     private FileTypeAttribute fileTypePreferred;
 
     public VCAttributes() {
-        preferences = new HashMap<>();
-
         //Default file type is PNG
-        fileTypePreferred = new FileTypeAttribute(FileType.PNG);
+        this(FileType.PNG);
+    }
+
+    public VCAttributes(FileType fileType) {
+        attributes = new HashMap<>();
+        fileTypePreferred = new FileTypeAttribute(fileType);
     }
 
     @Override
     public String toString() {
-        Attribute[] prefs = preferences.values().toArray(new Attribute[0]);
+        Attribute[] prefs = attributes.values().toArray(new Attribute[0]);
         String[] terms = new String[prefs.length + 1];
 
         for(int i = 0; i < prefs.length; i++) {
@@ -157,8 +38,8 @@ public class VCAttributes {
     }
 
     /**
-     * Gets the file extension associated with the preferences.
-     * @return
+     * Gets the file extension associated with the attributes.
+     * @return the file extension (e.g. "png", "jpg", "gif")
      */
     public String getFileExtension() {
         return fileTypePreferred.getValue();
@@ -179,104 +60,75 @@ public class VCAttributes {
 
     //====================================Setters====================================
 
-    //TODO: Replace numbers >4 with that number % 4
-    private boolean verifyAlgorithmm(String algorithm) {
-        String validCharacters = "UDFBLRSEM";
-        validCharacters += validCharacters.toLowerCase() + "'23xyz";
-
-        return algorithm.matches("[" + validCharacters + "]*");
-    }
-
-    public void algorithm(String algorithm) {
+    public VCAttributes algorithm(String algorithm) {
         if(algorithm == null) {
-            return;
+            return this;
         }
-        algorithm = algorithm.replace(" ", "");
-        if (!verifyAlgorithmm(algorithm)) {
-            String validCharacters = "UDFBLRSEM";
-            validCharacters += validCharacters.toLowerCase() + "'23xyz";
 
-            throw new InvalidAlgorithmException("An algorithm case can consist of only the characters in the set {" +
-                    validCharacters.join(", ", validCharacters.split("")) + "}");
-        }
-        preferences.put(AlgorithmAttribute.class, new AlgorithmAttribute(algorithm));
-        return;
+        attributes.put(AlgorithmAttribute.class, new AlgorithmAttribute(algorithm));
+        return this;
     }
 
-    public void fileType(FileType fileType) {
+    public VCAttributes fileType(FileType fileType) {
         if(fileType == null) {
-            return;
+            return this;
         }
 
         fileTypePreferred = new FileTypeAttribute(fileType);
-        return;
+        return this;
     }
 
-    public void imageSize(Integer size) {
+    public VCAttributes imageSize(Integer size) {
         if(size == null) {
-            return;
+            return this;
         }
 
-        if (size < 0 || size > 1024) {
-            throw new SizeOutOfBoundsException("An image's size must be a value between 1 and 1024");
-        }
-        preferences.put(SizeAttribute.class, new SizeAttribute(size));
-        return;
+        attributes.put(SizeAttribute.class, new SizeAttribute(size));
+        return this;
     }
 
-    public void backgroundColor(BackgroundColor color) {
+    public VCAttributes backgroundColor(BackgroundColor color) {
         if(color == null) {
-            return;
+            return this;
         }
 
-        preferences.put(BackgroundColorAttribute.class, new BackgroundColorAttribute(color));
-        return;
+        attributes.put(BackgroundColorAttribute.class, new BackgroundColorAttribute(color));
+        return this;
     }
 
-    public void puzzleType(Integer size) {
+    public VCAttributes puzzleType(Integer size) {
         if(size == null) {
-            return;
+            return this;
         }
 
-        if (size < 1 || size > 10) {
-            throw new PuzzleTypeOutOfBoundsException("A puzzle type must be an integer between 1 and 10");
-        }
-        preferences.put(PuzzleTypeAttribute.class, new PuzzleTypeAttribute(size));
-        return;
+        attributes.put(PuzzleTypeAttribute.class, new PuzzleTypeAttribute(size));
+        return this;
     }
 
-    public void algorithmCase(String algorithm) {
+    public VCAttributes algorithmCase(String algorithm) {
         if(algorithm == null) {
-            return;
+            return this;
         }
-        algorithm = algorithm.replace(" ", "");
-        System.out.println(algorithm);
-        if (!verifyAlgorithmm(algorithm)) {
-            String validCharacters = "UDFBLRSEM";
-            validCharacters += validCharacters.toLowerCase() + "'23xyz";
 
-            throw new InvalidCaseException("An algorithm case can consist of only the characters in the set {" +
-                    validCharacters.join(", ", validCharacters.split("")) + "}");
-        }
-        preferences.put(CaseAttribute.class, new CaseAttribute(algorithm));
-        return;
+        attributes.put(CaseAttribute.class, new CaseAttribute(algorithm));
+        return this;
     }
 
-    public void stageMask(StageMaskType mask) {
+    public VCAttributes stageMask(StageMaskType mask) {
         if(mask == null) {
-            return;
+            return this;
         }
 
-        preferences.put(StageMaskType.class, new StageMaskAttribute(mask));
-        return;
+        attributes.put(StageMaskType.class, new StageMaskAttribute(mask));
+        return this;
     }
 
-    public void view(ViewType view) {
+    public VCAttributes view(ViewType view) {
         if(view == null) {
-            return;
+            return this;
         }
 
-        preferences.put(ViewAttribute.class, new ViewAttribute(view));
-        return;
+        attributes.put(ViewAttribute.class, new ViewAttribute(view));
+        return this;
     }
 }
