@@ -10,6 +10,7 @@ import java.net.URL;
 //TODO: restrict the cache to a specified size / # of images
 //TODO: Implement LRU algorithm
 //TODO: Add config file for fields
+//TODO: auto generate cache folder if it doesn't exist
 
 class ImageCache {
 
@@ -21,7 +22,12 @@ class ImageCache {
     //The url of visual cube
     private static final String url = "http://68.183.24.81/visualcube/visualcube.php?";
 
-    private ImageCache() {}
+    private ImageCache() {
+        File cache = new File(cacheDirectory);
+        if(!cache.exists()) {
+            cache.mkdir();
+        }
+    }
 
     static ImageCache getInstance() {
         if(instance == null) {
