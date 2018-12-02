@@ -1,6 +1,6 @@
 package ImageGeneration.Generation;
 
-import ImageGeneration.Preferences.VCAttributes;
+import ImageGeneration.Attributes.VCAttributes;
 
 import java.awt.image.BufferedImage;
 import java.io.*;
