@@ -52,6 +52,11 @@ or directly save the generated image to a file
 VisualCube.saveImageWithAttributesToFile(attributes, "CubeImage");
 ```
 
+By default, the framework uses VisualCube's website (http://cube.crider.co.uk/visualcube.php) to generate the images. If you want to connect to your own instance of VisualCube, you can do so with the following line of code
+
+```java
+VisualCube.setURL("http://www.<root domain>/<path name>/visualcube.php");
+```
 
 ### Examples
 
