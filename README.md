@@ -94,4 +94,4 @@ VCAttributes attributes = new VCAttributes()
 VisualCube.saveImageWithAttributesToFile(attributes, "examples/example_3");
 ```
 
-![F2L Stage Cube](https://github.com/jbeck18/VisualCube/blob/master/examples/example_3.png "Example 3")
+![F2L Stage Cube](https://github.com/jbeck18/VisualCube/blob/master/examples/example_3.png "Example 3 ")
